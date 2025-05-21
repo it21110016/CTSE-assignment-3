@@ -4,18 +4,24 @@
     <meta charset="utf-8" />
     <title>AR Beach Scene</title>
 
-    <!-- Updated A-Frame and AR.js Libraries -->
+    <!-- A-Frame and AR.js Libraries -->
     <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/AR-js-org/AR.js/aframe/build/aframe-ar.min.js"></script>
+    
+    <style>
+      body {
+        margin: 0;
+        overflow: hidden;
+      }
+    </style>
   </head>
 
-  <body style="margin: 0; overflow: hidden;">
-    <a-scene embedded arjs>
+  <body>
+    <a-scene embedded arjs="sourceType: webcam; debugUIEnabled: false;">
 
       <!-- Preload beach assets -->
       <a-assets>
         <!-- 3D models -->
-
         <a-asset-item id="surfboard" src="models/Surfboard.glb"></a-asset-item>
         <a-asset-item id="beach-bro" src="models/Beach-bro.glb"></a-asset-item>
         <a-asset-item id="seahorse" src="models/Seahorse.glb"></a-asset-item>
@@ -25,132 +31,153 @@
         <a-asset-item id="crab" src="models/Crab.glb"></a-asset-item>
         <a-asset-item id="beach-ball" src="models/beach-ball.glb"></a-asset-item>
 
-
-        <!-- Sound -->
-        <audio id="ocean-sound" src="sounds/ocean-wave.mp3" autoplay loop></audio>
-
-        <!-- Sand texture -->
-        <img id="sand-texture" src="textures/sand.jpg" />
+        <!-- Textures -->
+        <img id="sand-texture" src="textures/sand.jpg" crossorigin="anonymous"/>
       </a-assets>
 
       <!-- Marker -->
       <a-marker preset="hiro">
-        <!-- Ground plane with sand texture -->
+        <!-- Ground plane with sand texture (thicker) -->
         <a-plane
           position="0 0 0"
           rotation="-90 0 0"
-          width="3"
-          height="3"
+          width="4"
+          height="4"
           src="#sand-texture"
           repeat="4 4"
         ></a-plane>
 
-
-        <!-- 1. Surfboard -->
+        <!-- 1. Surfboard (larger and properly positioned) -->
         <a-entity
           gltf-model="#surfboard"
-          position="1 0 -0.5"
-          scale="0.2 0.2 0.2"
+          position="1.2 0.2 -0.8"
+          scale="0.3 0.3 0.3"
           rotation="0 180 0"
         ></a-entity>
 
-        <!-- 2. Beach Bro with pulse animation -->
+        <!-- 2. Beach Bro (properly scaled and positioned) -->
         <a-entity
           gltf-model="#beach-bro"
-          position="0.5 0.01 1.2"
-          scale="0.3 0.3 0.3"
+          position="0.6 0.25 1.5"
+          scale="0.35 0.35 0.35"
           rotation="0 -45 0"
         >
           <a-animation
-            attribute="scale"
-            to="0.32 0.32 0.32"
+            attribute="position"
+            to="0.6 0.3 1.5"
+            direction="alternate"
+            dur="2000"
+            repeat="indefinite"
+            easing="ease-in-out"
+          ></a-animation>
+        </a-entity>
+
+        <!-- 3. Seahorse (better scale and movement) -->
+        <a-entity
+          gltf-model="#seahorse"
+          position="-1 0.15 1.2"
+          scale="0.2 0.2 0.2"
+          rotation="0 30 0"
+        >
+          <a-animation
+            attribute="position"
+            to="-1 0.2 1.2"
             direction="alternate"
             dur="1500"
             repeat="indefinite"
           ></a-animation>
-        </a-entity>
-
-        <!-- 3. Seahorse bobbing animation -->
-        <a-entity
-          gltf-model="#seahorse"
-          position="-0.8 0 1"
-          scale="0.15 0.15 0.15"
-          rotation="0 0 0"
-        >
           <a-animation
-            attribute="position"
-            to="-0.8 0.05 1"
+            attribute="rotation"
+            to="0 60 0"
             direction="alternate"
-            dur="1200"
+            dur="3000"
             repeat="indefinite"
           ></a-animation>
         </a-entity>
 
-        <!-- 4. Bucket tilt sway -->
+        <!-- 4. Bucket (better proportions) -->
         <a-entity
           gltf-model="#bucket"
-          position="0.2 0 0.9"
-          scale="0.1 0.1 0.1"
+          position="0.3 0.15 1.1"
+          scale="0.2 0.2 0.2"
           rotation="0 20 0"
         >
           <a-animation
             attribute="rotation"
             to="0 25 5"
             direction="alternate"
-            dur="1000"
+            dur="1200"
             repeat="indefinite"
           ></a-animation>
         </a-entity>
 
-        <!-- 5. Starfish -->
+        <!-- 5. Starfish (more visible) -->
         <a-entity
           gltf-model="#starfish"
-          position="-0.4 0 0.6"
-          scale="0.07 0.07 0.07"
-          rotation="0 0 0"
+          position="-0.5 0.1 0.8"
+          scale="0.15 0.15 0.15"
+          rotation="0 0 20"
         ></a-entity>
 
-        <!-- 6. Flip-flops -->
+        <!-- 6. Flip-flops (better placement) -->
         <a-entity
           gltf-model="#flipflops"
-          position="0.6 0 0.7"
-          scale="0.1 0.1 0.1"
-          rotation="0 30 0"
+          position="0.8 0.1 0.9"
+          scale="0.2 0.2 0.2"
+          rotation="0 45 0"
         ></a-entity>
 
-        <!-- 7. Crab -->
+        <!-- 7. Crab (animated movement) -->
         <a-entity
           gltf-model="#crab"
-          position="-0.6 0 1.1"
-          scale="0.12 0.12 0.12"
+          position="-0.8 0.1 1.4"
+          scale="0.2 0.2 0.2"
           rotation="0 -30 0"
-        ></a-entity>
+        >
+          <a-animation
+            attribute="position"
+            to="-0.7 0.1 1.3"
+            direction="alternate"
+            dur="1800"
+            repeat="indefinite"
+          ></a-animation>
+        </a-entity>
 
-        <!-- 8. Rotating Beach Ball -->
+        <!-- 8. Beach Ball (better spinning) -->
         <a-entity
           gltf-model="#beach-ball"
-          position="0.5 0.1 -0.8"
-          scale="0.15 0.15 0.15"
-          rotation="0 0 0"
+          position="0.7 0.2 -1"
+          scale="0.25 0.25 0.25"
         >
           <a-animation
             attribute="rotation"
-            to="0 360 0"
-            dur="3000"
+            to="360 360 360"
+            dur="4000"
             repeat="indefinite"
+          ></a-animation>
+          <a-animation
+            attribute="position"
+            to="0.7 0.25 -1"
+            direction="alternate"
+            dur="2000"
+            repeat="indefinite"
+            easing="ease-in-out"
           ></a-animation>
         </a-entity>
 
+        <!-- Ocean sound (positional audio) -->
+        <a-sound src="#ocean-sound" autoplay="true" loop="true" volume="5" positional="false"></a-sound>
 
-        <!-- Particle system for sand effect -->
+        <!-- Particle system for sand effect (improved) -->
         <a-entity
-          particle-system="preset: dust; color: #F4A261; particles: 5000; size: 1.5; velocityValue: 0 1 0; opacity: 0.5; duration: 2;"
-          position="0 0 0"
+          particle-system="preset: dust; color: #F4A261; particleCount: 2000; size: 2; 
+                          velocityValue: 0 0.5 0; opacity: 0.6; duration: 3;"
+          position="0 0.1 0"
         ></a-entity>
       </a-marker>
 
-      <!-- AR Camera -->
-      <a-entity camera></a-entity>
+      <!-- Camera with better AR settings -->
+      <a-entity camera="fov: 60; near: 0.1; far: 1000;" position="0 1.6 0"></a-entity>
     </a-scene>
   </body>
 </html>
