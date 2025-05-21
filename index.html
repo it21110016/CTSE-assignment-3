@@ -54,29 +54,53 @@
           rotation="0 180 0"
         ></a-entity>
 
-        <!-- 2. Beach Bro -->
+        <!-- 2. Beach Bro with pulse animation -->
         <a-entity
           gltf-model="#beach-bro"
-          position="0.5 0 1.2"
+          position="0.5 0.01 1.2"
           scale="0.3 0.3 0.3"
           rotation="0 -45 0"
-        ></a-entity>
+        >
+          <a-animation
+            attribute="scale"
+            to="0.32 0.32 0.32"
+            direction="alternate"
+            dur="1500"
+            repeat="indefinite"
+          ></a-animation>
+        </a-entity>
 
-        <!-- 3. Seahorse -->
+        <!-- 3. Seahorse bobbing animation -->
         <a-entity
           gltf-model="#seahorse"
           position="-0.8 0 1"
           scale="0.15 0.15 0.15"
           rotation="0 0 0"
-        ></a-entity>
+        >
+          <a-animation
+            attribute="position"
+            to="-0.8 0.05 1"
+            direction="alternate"
+            dur="1200"
+            repeat="indefinite"
+          ></a-animation>
+        </a-entity>
 
-        <!-- 4. Bucket -->
+        <!-- 4. Bucket tilt sway -->
         <a-entity
           gltf-model="#bucket"
           position="0.2 0 0.9"
           scale="0.1 0.1 0.1"
           rotation="0 20 0"
-        ></a-entity>
+        >
+          <a-animation
+            attribute="rotation"
+            to="0 25 5"
+            direction="alternate"
+            dur="1000"
+            repeat="indefinite"
+          ></a-animation>
+        </a-entity>
 
         <!-- 5. Starfish -->
         <a-entity
