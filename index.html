@@ -4,14 +4,17 @@
     <meta charset="utf-8" />
     <title>AR Beach Scenario - Group 16</title>
 
-    <!-- A-Frame and AR.js Libraries -->
+    <!-- A-Frame library -->
     <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+    
+    <!-- AR.js for markers -->
     <script src="https://cdn.jsdelivr.net/gh/AR-js-org/AR.js/aframe/build/aframe-ar.min.js"></script>
-    
-    <!-- Animation component - required for animations to work in A-Frame 1.0+ -->
+
+    <!-- Enhanced animations -->
     <script src="https://unpkg.com/aframe-animation-component@5.1.2/dist/aframe-animation-component.min.js"></script>
-    
+
     <style>
+      /* Remove margins and scrollbars */
       body {
         margin: 0;
         overflow: hidden;
@@ -20,11 +23,12 @@
   </head>
 
   <body>
-    <a-scene embedded arjs>
-
-      <!-- Preload beach assets -->
+    
+    <!-- AR scene with webcam input -->    
+    <a-scene embedded arjs="sourceType: webcam; debugUIEnabled: false; detectionMode: mono_and_matrix; matrixCodeType: 3x3;">
+      
       <a-assets>
-        <!-- 3D models -->
+        <!-- Beach models -->
         <a-asset-item id="surfboard" src="models/Surfboard.glb"></a-asset-item>
         <a-asset-item id="beach-bro" src="models/Beach-bro.glb"></a-asset-item>
         <a-asset-item id="bucket" src="models/Bucket.glb"></a-asset-item>
@@ -32,140 +36,149 @@
         <a-asset-item id="beach-ball" src="models/beach-ball.glb"></a-asset-item>
         <a-asset-item id="crab" src="models/Crab.glb"></a-asset-item>
         <a-asset-item id="palm-tree1" src="models/Palm-tree.glb"></a-asset-item>
-        <a-asset-item id="palm-tree2" src="models/Palm-tree2.glb"></a-asset-item>        
-        
-        <!-- Sound -->
+        <a-asset-item id="palm-tree2" src="models/Palm-tree2.glb"></a-asset-item>
+
+        <!-- Ocean sound -->
         <audio id="ocean-sound" src="sounds/ocean-wave.mp3" preload="auto"></audio>
 
-        <!-- Textures -->
-        <img id="sand-texture" src="textures/sand.jpg" crossorigin="anonymous"/>
+        <!-- Sand texture -->
+        <img id="sand-texture" src="textures/sand.jpg" crossorigin="anonymous" />
       </a-assets>
 
-      <!-- Marker -->
-      <a-marker preset="hiro" position="0 0 0" rotation="0 0 0" scale="1 1 1">
+      <!-- Hiro marker detection -->      
+      <a-marker preset="hiro">
         
-        <!-- Background Sound -->
+        <!-- Ocean sound loop -->
         <a-entity sound="src: #ocean-sound; autoplay: true; loop: true; volume: 5.0"></a-entity>
-        
-        <!-- Ground plane with sand texture (thicker) -->
-        <a-plane
-          position="0 0 0"
-          rotation="-90 0 0"
-          width="12"
-          height="11"
-          src="#sand-texture"
-          repeat="4 4"
-        ></a-plane>
 
-        <!-- 1. Surfboard -->
-        <a-entity
-          gltf-model="#surfboard"
-          position="-1.309 0.863 3.034"
-          scale="0.007 0.010 0.007"
-          rotation="180.590 50.030 -90.380"
-        ></a-entity>        
-        
-        <!-- 2. Beach Bro -->
-         <a-entity
-          gltf-model="#beach-bro"
-          position="2.380 1.946 2.299"
-          scale="0.35 0.35 0.35"
-          rotation="0 200.000 0"
-          animation__float="property: position; to: 2.380 2.1 2.299; dir: alternate; dur: 2000; loop: true; easing: easeInOutSine"
-          animation__rotate="property: rotation; to: 0 160 0; dir: alternate; dur: 4000; loop: true"
-        ></a-entity>
+        <!-- Beach scene container -->
+        <a-entity id="beach-scene-container" position="0 0 0">
+          
+          <!-- Sand ground -->
+          <a-plane
+            position="0 0 0" rotation="-90 0 0"
+            width="1.2"
+            height="1.1"
+            src="#sand-texture"
+            repeat="4 4"
+          ></a-plane>
 
-        <!-- 4. Bucket-->
-        <a-entity
-          gltf-model="#bucket"
-          position="0.300 0.130 1.100"
-          scale="0.200 0.200 0.200"
-          rotation="0 20.000 0"
-          animation__rock="property: rotation; to: 5 25 5; dir: alternate; dur: 1500; loop: true; easing: easeInOutSine"
-          animation__move="property: position; to: 0.320 0.130 1.150; dir: alternate; dur: 3000; loop: true; easing: easeInOutSine"
-        ></a-entity>        
-        
-        <!-- 5. Starfish -->
-        <a-entity
-          gltf-model="#starfish"
-          position="5.280 0.056 4.560"
-          scale="0.1 0.1 0.1"
-          rotation="0 0 0"
-          animation__pulse="property: scale; to: 0.11 0.11 0.11; dir: alternate; dur: 2000; loop: true; easing: easeInOutSine"
-          animation__rotate="property: rotation; to: 0 15 0; dir: alternate; dur: 5000; loop: true"
-        ></a-entity>        
-        
-        <!-- 6. Beach Ball -->
-        <a-entity
-          gltf-model="#beach-ball"
-          position="1.769 0.230 -0.926"
-          scale="1 1 1"
-          animation__rotate="property: rotation; to: 360 360 360; dur: 8000; loop: true"
-          animation__bounce="property: position; to: 1.769 0.350 -0.926; dir: alternate; dur: 800; loop: true; easing: easeInOutQuad" 
-          animation__move="property: position; from: 1.769 0.230 -0.926; to: 0.7 0.230 -1; dur: 10000; loop: true; dir: alternate; easing: easeInOutSine"
-        ></a-entity>        
-        
-        <!-- 7. Palm Tree 1-->
-        <a-entity
-          gltf-model="#palm-tree1"
-          position="-3.598 -0.103 -3.317"
-          scale="0.400 0.4 0.4"
-          rotation="0 30 0"
-          animation__sway="property: rotation; to: 3 45 5; dir: alternate; dur: 3000; loop: true; easing: easeInOutSine"
-        ></a-entity>        
-        
-        <!-- 8. Palm Tree 2-->
-        <a-entity
-          gltf-model="#palm-tree2"
-          position="4.326 0.053 -3.664"
-          scale="0.400 0.400 0.300"
-          rotation="0 -30 0"
-          animation__sway="property: rotation; to: -3 -45 -5; dir: alternate; dur: 3500; loop: true; easing: easeInOutSine"
-        ></a-entity>
-        
-        <!-- 9. Crab -->
-        <a-entity
-          gltf-model="#crab"
-          position="-4.545 0.226 4.282"
-          scale="1.000 1.000 1.000"
-          rotation="0 0 0"
-          animation__move="property: position; to: -4.545 0.226 3.282; dir: alternate; dur: 2000; loop: true"
-          animation__rotate="property: rotation; to: 0 180 0; dir: alternate; dur: 3000; loop: true"
-        ></a-entity>
+          <!-- Surfboard -->
+          <a-entity
+            gltf-model="#surfboard"
+            position="-0.13 0.08 0.30" scale="0.0007 0.001 0.0007"
+            rotation="180.590 50.030 -90.380"
+          ></a-entity>
 
-        <!-- Particle system for sand effect (improved) -->
-        <a-entity
-          particle-system="preset: dust; color: #F4A261; particleCount: 2000; size: 2; 
-                          velocityValue: 0 0.5 0; opacity: 0.6; duration: 3;"
-          position="0 0.1 0"
-        ></a-entity>
+          <!-- Person with float animation -->
+          <a-entity
+            gltf-model="#beach-bro"
+            position="0.24 0.19 0.23"
+            scale="0.035 0.035 0.035"
+            rotation="0 200.000 0"
+            animation__float="property: position; to: 0.24 0.21 0.23; dir: alternate; dur: 2000; loop: true; easing: easeInOutSine"
+            animation__rotate="property: rotation; to: 0 160 0; dir: alternate; dur: 4000; loop: true"
+          ></a-entity>
+
+          <!-- Beach bucket with rocking -->
+          <a-entity
+            gltf-model="#bucket"
+            position="0.03 0.013 0.11"
+            scale="0.02 0.02 0.02"
+            rotation="0 20.000 0"
+            animation__rock="property: rotation; to: 5 25 5; dir: alternate; dur: 1500; loop: true; easing: easeInOutSine"
+            animation__move="property: position; to: 0.032 0.013 0.115; dir: alternate; dur: 3000; loop: true; easing: easeInOutSine"
+          ></a-entity>
+
+          <!-- Starfish with pulse -->
+          <a-entity
+            gltf-model="#starfish"
+            position="0.53 0.0056 0.46"
+            scale="0.01 0.01 0.01"
+            rotation="0 0 0"
+            animation__pulse="property: scale; to: 0.011 0.011 0.011; dir: alternate; dur: 2000; loop: true; easing: easeInOutSine"
+            animation__rotate="property: rotation; to: 0 15 0; dir: alternate; dur: 5000; loop: true"
+          ></a-entity>
+
+          <!-- Beach ball with bounce -->
+          <a-entity
+            gltf-model="#beach-ball"
+            position="0.18 0.023 -0.09"
+            scale="0.1 0.1 0.1"
+            animation__rotate="property: rotation; to: 360 360 360; dur: 8000; loop: true"
+            animation__bounce="property: position; to: 0.18 0.035 -0.09; dir: alternate; dur: 800; loop: true; easing: easeInOutQuad"
+            animation__move="property: position; from: 0.18 0.023 -0.09; to: 0.07 0.023 -0.1; dur: 10000; loop: true; dir: alternate; easing: easeInOutSine"
+          ></a-entity>
+
+          <!-- Left palm tree -->
+          <a-entity
+            gltf-model="#palm-tree1"
+            position="-0.36 -0.01 -0.33"
+            scale="0.04 0.04 0.04"
+            rotation="0 30 0"
+            animation__sway="property: rotation; to: 3 45 5; dir: alternate; dur: 3000; loop: true; easing: easeInOutSine"
+          ></a-entity>
+
+          <!-- Right palm tree -->
+          <a-entity
+            gltf-model="#palm-tree2"
+            position="0.43 0.005 -0.37"
+            scale="0.04 0.04 0.03"
+            rotation="0 -30 0"
+            animation__sway="property: rotation; to: -3 -45 -5; dir: alternate; dur: 3500; loop: true; easing: easeInOutSine"
+          ></a-entity>
+
+          <!-- Moving crab -->
+          <a-entity
+            gltf-model="#crab"
+            position="-0.45 0.023 0.43"
+            scale="0.1 0.1 0.1"
+            rotation="0 0 0"
+            animation__move="property: position; to: -0.45 0.023 0.33; dir: alternate; dur: 2000; loop: true"
+            animation__rotate="property: rotation; to: 0 180 0; dir: alternate; dur: 3000; loop: true"
+          ></a-entity>
+
+          <!-- Sand particles -->
+          <a-entity
+            particle-system="preset: dust; color: #F4A261; particleCount: 2000; size: 0.2;
+                                 velocityValue: 0 0.05 0; opacity: 0.6; duration: 3;"
+            position="0 0.01 0"
+          ></a-entity>        
+        
+        </a-entity> 
+      
       </a-marker>
 
-      <!-- Camera with better AR settings -->
-      <a-entity camera="fov: 60; near: 0.1; far: 1000;" position="0 1.6 0"></a-entity>
+      <!-- Camera -->
+      <a-entity camera></a-entity>
+      
     </a-scene>
 
     <script>
-      // Script to handle sound playback after user interaction
-      window.addEventListener('click', function() {
-        var scene = document.querySelector('a-scene');
-        
-        // Wait for scene to load completely
-        if (scene.hasLoaded) {
-          enableSound();
-        } else {
-          scene.addEventListener('loaded', enableSound);
-        }
-        
-        function enableSound() {
-          // Get the sound entity and ensure it's playing
-          var soundEntity = document.querySelector('[sound]');
-          if (soundEntity) {
-            soundEntity.components.sound.playSound();
-            console.log("Sound playback initiated after user interaction");
+      // Sound playback after user click
+      window.addEventListener(
+        'click',
+        function () {
+          var scene = document.querySelector('a-scene');
+
+          // Wait for scene to load
+          if (scene.hasLoaded) {
+            enableSound();
+          } else {
+            scene.addEventListener('loaded', enableSound);
           }
-        }
-      }, { once: true });
+
+          // Play ocean sound
+          function enableSound() {
+            var soundEntity = document.querySelector('[sound]');
+            if (soundEntity) {
+              soundEntity.components.sound.playSound();
+              console.log('Sound playback initiated after user interaction');
+            }
+          }
+        },
+        { once: true } // Only trigger once
+      );
     </script>
   </body>
 </html>
