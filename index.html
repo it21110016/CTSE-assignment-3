@@ -24,12 +24,16 @@
         <!-- 3D models -->
         <a-asset-item id="surfboard" src="models/Surfboard.glb"></a-asset-item>
         <a-asset-item id="beach-bro" src="models/Beach-bro.glb"></a-asset-item>
-        <a-asset-item id="seahorse" src="models/Seahorse.glb"></a-asset-item>
+        <!-- <a-asset-item id="seahorse" src="models/Seahorse.glb"></a-asset-item> -->
         <a-asset-item id="bucket" src="models/Bucket.glb"></a-asset-item>
         <a-asset-item id="starfish" src="models/Starfish.glb"></a-asset-item>
-        <a-asset-item id="flipflops" src="models/Flip-flops.glb"></a-asset-item>
-        <a-asset-item id="crab" src="models/Crab.glb"></a-asset-item>
         <a-asset-item id="beach-ball" src="models/beach-ball.glb"></a-asset-item>
+        <a-asset-item id="crab" src="models/Crab.glb"></a-asset-item>
+        <a-asset-item id="palm-tree1" src="models/Palm-tree.glb"></a-asset-item>
+        <a-asset-item id="palm-tree2" src="models/Palm-tree2.glb"></a-asset-item>
+
+        <!-- Sound -->
+        <audio id="ocean-sound" src="sounds/ocean-wave.mp3" autoplay loop></audio>
 
         <!-- Textures -->
         <img id="sand-texture" src="textures/sand.jpg" crossorigin="anonymous"/>
@@ -41,26 +45,26 @@
         <a-plane
           position="0 0 0"
           rotation="-90 0 0"
-          width="4"
-          height="4"
+          width="12"
+          height="11"
           src="#sand-texture"
           repeat="4 4"
         ></a-plane>
 
-        <!-- 1. Surfboard (larger and properly positioned) -->
+        <!-- 1. Surfboard -->
         <a-entity
           gltf-model="#surfboard"
-          position="1.2 0.2 -0.8"
-          scale="0.3 0.3 0.3"
-          rotation="0 180 0"
+          position="-1.309 0.863 3.034"
+          scale="0.007 0.010 0.007"
+          rotation="180.590 50.030 -90.380"
         ></a-entity>
 
-        <!-- 2. Beach Bro (properly scaled and positioned) -->
-        <a-entity
+        <!-- 2. Beach Bro -->
+         <a-entity
           gltf-model="#beach-bro"
-          position="0.6 0.25 1.5"
+          position="2.380 1.946 2.299"
           scale="0.35 0.35 0.35"
-          rotation="0 -45 0"
+          rotation="0 200.000 0"
         >
           <a-animation
             attribute="position"
@@ -72,11 +76,11 @@
           ></a-animation>
         </a-entity>
 
-        <!-- 3. Seahorse (better scale and movement) -->
-        <a-entity
+        <!-- 3. Seahorse -->
+        <!-- <a-entity
           gltf-model="#seahorse"
-          position="-1 0.15 1.2"
-          scale="0.2 0.2 0.2"
+          position="-4.325 -0.348 3.783"
+          scale="0.15 0.15 0.15"
           rotation="0 30 0"
         >
           <a-animation
@@ -93,14 +97,14 @@
             dur="3000"
             repeat="indefinite"
           ></a-animation>
-        </a-entity>
+        </a-entity> -->
 
-        <!-- 4. Bucket (better proportions) -->
+        <!-- 4. Bucket-->
         <a-entity
           gltf-model="#bucket"
-          position="0.3 0.15 1.1"
-          scale="0.2 0.2 0.2"
-          rotation="0 20 0"
+          position="0.300 0.130 1.100"
+          scale="0.200 0.200 0.200"
+          rotation="0 20.000 0"
         >
           <a-animation
             attribute="rotation"
@@ -111,43 +115,19 @@
           ></a-animation>
         </a-entity>
 
-        <!-- 5. Starfish (more visible) -->
+        <!-- 5. Starfish -->
         <a-entity
           gltf-model="#starfish"
-          position="-0.5 0.1 0.8"
-          scale="0.15 0.15 0.15"
-          rotation="0 0 20"
+          position="5.280 0.056 4.560"
+          scale="0.1 0.1 0.1"
+          rotation="0 0 0"
         ></a-entity>
 
-        <!-- 6. Flip-flops (better placement) -->
-        <a-entity
-          gltf-model="#flipflops"
-          position="0.8 0.1 0.9"
-          scale="0.2 0.2 0.2"
-          rotation="0 45 0"
-        ></a-entity>
-
-        <!-- 7. Crab (animated movement) -->
-        <a-entity
-          gltf-model="#crab"
-          position="-0.8 0.1 1.4"
-          scale="0.2 0.2 0.2"
-          rotation="0 -30 0"
-        >
-          <a-animation
-            attribute="position"
-            to="-0.7 0.1 1.3"
-            direction="alternate"
-            dur="1800"
-            repeat="indefinite"
-          ></a-animation>
-        </a-entity>
-
-        <!-- 8. Beach Ball (better spinning) -->
+        <!-- 6. Beach Ball -->
         <a-entity
           gltf-model="#beach-ball"
-          position="0.7 0.2 -1"
-          scale="0.25 0.25 0.25"
+          position="1.769 0.230 -0.926"
+          scale="0.930 1.180 0.920"
         >
           <a-animation
             attribute="rotation"
@@ -165,8 +145,60 @@
           ></a-animation>
         </a-entity>
 
-        <!-- Ocean sound (positional audio) -->
-        <a-sound src="#ocean-sound" autoplay="true" loop="true" volume="5" positional="false"></a-sound>
+        <!-- 7. Palm Tree 1-->
+        <a-entity
+          gltf-model="#palm-tree1"
+          position="-3.598 -0.103 -3.317"
+          scale="0.400 0.4 0.4"
+          rotation="0 30 0"
+        >
+          <a-animation
+            attribute="rotation"
+            to="0 45 0"
+            direction="alternate"
+            dur="2000"
+            repeat="indefinite"
+          ></a-animation>
+        </a-entity>
+
+        <!-- 8. Palm Tree 2-->
+        <a-entity
+          gltf-model="#palm-tree2"
+          position="4.326 0.053 -3.664"
+          scale="0.400 0.400 0.300"
+          rotation="0 -30 0"
+        >
+          <a-animation
+            attribute="rotation"
+            to="0 -45 0"
+            direction="alternate"
+            dur="2000"
+            repeat="indefinite"
+          ></a-animation>
+        </a-entity>
+
+        <!-- 9. Crab -->
+        <a-entity
+          gltf-model="#crab"
+          position="-4.545 0.226 4.282"
+          scale="1.000 1.000 1.000"
+          rotation="0 0 0"
+        >
+          <a-animation
+            attribute="position"
+            to="-4.545 0.226 3.282"
+            direction="alternate"
+            dur="2000"
+            repeat="indefinite"
+          ></a-animation>
+          <a-animation
+            attribute="rotation"
+            to="0 180 0"
+            direction="alternate"
+            dur="3000"
+            repeat="indefinite"
+          ></a-animation>
+         </a-entity>
 
         <!-- Particle system for sand effect (improved) -->
         <a-entity
