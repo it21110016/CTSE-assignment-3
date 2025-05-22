@@ -40,32 +40,36 @@
 
         <!-- Textures -->
         <img id="sand-texture" src="textures/sand.jpg" crossorigin="anonymous"/>
-      </a-assets>      <!-- Marker with reduced size to better fit content -->
-      <a-marker preset="hiro" size="0.5">
+      </a-assets>
+
+      <!-- Marker -->
+      <!-- <a-marker preset="hiro"> -->
           <!-- Background Sound -->
         <a-entity sound="src: #ocean-sound; autoplay: true; loop: true; volume: 5.0"></a-entity>
         
-        <!-- Ground plane with sand texture (reduced size) -->
+        <!-- Ground plane with sand texture (thicker) -->
         <a-plane
           position="0 0 0"
           rotation="-90 0 0"
-          width="2"
-          height="2"
+          width="12"
+          height="11"
           src="#sand-texture"
-          repeat="2 2"
-        ></a-plane>        <!-- 1. Surfboard -->
+          repeat="4 4"
+        ></a-plane>
+
+        <!-- 1. Surfboard -->
         <a-entity
           gltf-model="#surfboard"
-          position="-0.3 0.15 0.5"
-          scale="0.003 0.004 0.003"
+          position="-1.309 0.863 3.034"
+          scale="0.007 0.010 0.007"
           rotation="180.590 50.030 -90.380"
         ></a-entity>        <!-- 2. Beach Bro -->
          <a-entity
           gltf-model="#beach-bro"
-          position="0.5 0.3 0.4"
-          scale="0.07 0.07 0.07"
+          position="2.380 1.946 2.299"
+          scale="0.35 0.35 0.35"
           rotation="0 200.000 0"
-          animation__float="property: position; to: 0.5 0.35 0.4; dir: alternate; dur: 2000; loop: true; easing: easeInOutSine"
+          animation__float="property: position; to: 2.380 2.1 2.299; dir: alternate; dur: 2000; loop: true; easing: easeInOutSine"
           animation__rotate="property: rotation; to: 0 160 0; dir: alternate; dur: 4000; loop: true"
         >
         </a-entity>
@@ -90,62 +94,67 @@
             direction="alternate"
             dur="3000"
             repeat="indefinite"
-          ></a-animation>        </a-entity> -->        <!-- 4. Bucket-->
+          ></a-animation>
+        </a-entity> -->        <!-- 4. Bucket-->
         <a-entity
           gltf-model="#bucket"
-          position="0.1 0.05 0.3"
-          scale="0.05 0.05 0.05"
+          position="0.300 0.130 1.100"
+          scale="0.200 0.200 0.200"
           rotation="0 20.000 0"
           animation__rock="property: rotation; to: 5 25 5; dir: alternate; dur: 1500; loop: true; easing: easeInOutSine"
-          animation__move="property: position; to: 0.12 0.05 0.32; dir: alternate; dur: 3000; loop: true; easing: easeInOutSine"
-        >        </a-entity>        <!-- 5. Starfish -->
+          animation__move="property: position; to: 0.320 0.130 1.150; dir: alternate; dur: 3000; loop: true; easing: easeInOutSine"
+        >
+        </a-entity>        <!-- 5. Starfish -->
         <a-entity
           gltf-model="#starfish"
-          position="0.8 0.02 0.7"
-          scale="0.02 0.02 0.02"
+          position="5.280 0.056 4.560"
+          scale="0.1 0.1 0.1"
           rotation="0 0 0"
-          animation__pulse="property: scale; to: 0.022 0.022 0.022; dir: alternate; dur: 2000; loop: true; easing: easeInOutSine"
-          animation__rotate="property: rotation; to: 0 15 0; dir: alternate; dur: 5000; loop: true"        ></a-entity>        <!-- 6. Beach Ball -->
+          animation__pulse="property: scale; to: 0.11 0.11 0.11; dir: alternate; dur: 2000; loop: true; easing: easeInOutSine"
+          animation__rotate="property: rotation; to: 0 15 0; dir: alternate; dur: 5000; loop: true"
+        ></a-entity>        <!-- 6. Beach Ball -->
         <a-entity
           gltf-model="#beach-ball"
-          position="0.4 0.1 -0.2"
-          scale="0.2 0.25 0.2"
+          position="1.769 0.230 -0.926"
+          scale="0.930 1.180 0.920"
           animation__rotate="property: rotation; to: 360 360 360; dur: 8000; loop: true"
-          animation__bounce="property: position; to: 0.4 0.15 -0.2; dir: alternate; dur: 800; loop: true; easing: easeInOutQuad" 
-          animation__move="property: position; from: 0.4 0.1 -0.2; to: 0.2 0.1 -0.3; dur: 10000; loop: true; dir: alternate; easing: easeInOutSine"
-        >        </a-entity>        <!-- 7. Palm Tree 1-->
+          animation__bounce="property: position; to: 1.769 0.350 -0.926; dir: alternate; dur: 800; loop: true; easing: easeInOutQuad" 
+          animation__move="property: position; from: 1.769 0.230 -0.926; to: 0.7 0.230 -1; dur: 10000; loop: true; dir: alternate; easing: easeInOutSine"
+        >
+        </a-entity>        <!-- 7. Palm Tree 1-->
         <a-entity
           gltf-model="#palm-tree1"
-          position="-0.7 0.02 -0.7"
-          scale="0.08 0.08 0.08"
+          position="-3.598 -0.103 -3.317"
+          scale="0.400 0.4 0.4"
           rotation="0 30 0"
           animation__sway="property: rotation; to: 3 45 5; dir: alternate; dur: 3000; loop: true; easing: easeInOutSine"
-        >        </a-entity>        <!-- 8. Palm Tree 2-->
+        >
+        </a-entity>        <!-- 8. Palm Tree 2-->
         <a-entity
           gltf-model="#palm-tree2"
-          position="0.7 0.02 -0.7"
-          scale="0.08 0.08 0.06"
+          position="4.326 0.053 -3.664"
+          scale="0.400 0.400 0.300"
           rotation="0 -30 0"
           animation__sway="property: rotation; to: -3 -45 -5; dir: alternate; dur: 3500; loop: true; easing: easeInOutSine"
-        >        </a-entity>        <!-- 9. Crab -->
+        >
+        </a-entity><!-- 9. Crab -->
         <a-entity
           gltf-model="#crab"
-          position="-0.7 0.05 0.7"
-          scale="0.2 0.2 0.2"
+          position="-4.545 0.226 4.282"
+          scale="1.000 1.000 1.000"
           rotation="0 0 0"
-          animation__move="property: position; to: -0.7 0.05 0.5; dir: alternate; dur: 5000; loop: true; easing: easeInOutQuad"
+          animation__move="property: position; to: -4.545 0.226 3.282; dir: alternate; dur: 2000; loop: true"
           animation__rotate="property: rotation; to: 0 180 0; dir: alternate; dur: 3000; loop: true"
-          animation__bob="property: position; to: -0.7 0.07 0.7; dir: alternate; dur: 1000; loop: true; easing: easeInOutSine"
         >
          </a-entity>
 
         <!-- Particle system for sand effect (improved) -->
         <a-entity
-          particle-system="preset: dust; color: #F4A261; particleCount: 1000; size: 0.5; 
-                          velocityValue: 0 0.2 0; opacity: 0.6; duration: 3;"
-          position="0 0.05 0"
+          particle-system="preset: dust; color: #F4A261; particleCount: 2000; size: 2; 
+                          velocityValue: 0 0.5 0; opacity: 0.6; duration: 3;"
+          position="0 0.1 0"
         ></a-entity>
-      </a-marker>
+      <!-- </a-marker> -->
 
       <!-- Camera with better AR settings -->
       <a-entity camera="fov: 60; near: 0.1; far: 1000;" position="0 1.6 0"></a-entity>
